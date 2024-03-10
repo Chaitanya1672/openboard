@@ -37,6 +37,7 @@ body {
   left: 25vw;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   cursor: pointer;
+  /* gap: 0.5rem; */
 }
 
 .scale-tools {
@@ -51,6 +52,21 @@ body {
     transform: scale(1);
   }
 }
+
+/* .scale-tools-close {
+  animation-name: scale-tools-close;
+  animation-duration: 1s;
+}
+
+@keyframes scale-tools-close {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+} */
+
 .tools-cont > * {
   display: block;
   width: 14%;
@@ -197,5 +213,11 @@ img {
     width: 5rem;
     left: 30vw;
     top: 6rem;
+  }
+  .sticky-cont {
+    height: 10rem; 
+    width: 10rem;
+    top: 12rem;
+    left: 8rem;
   }
 }
