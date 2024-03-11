@@ -7,6 +7,7 @@ const eraserToolCont = document.querySelector('.eraser-tool-cont')
 const pencil = document.querySelector('.pencil')
 const eraser = document.querySelector('.eraser')
 const sticky = document.querySelector('.sticky')
+const upload = document.querySelector('.upload')
 
 let pencilToolFlag = false
 let eraserToolFlag = false
@@ -44,26 +45,62 @@ eraser.addEventListener('click', ()=>{
 })
 
 sticky.addEventListener('click',(e)=> {
-  console.log('clicked')
+  const stickyTemplateHTML = `
+    <div class="header-cont">
+      <div class="minimize"></div>
+      <div class="remove"></div>
+    </div>
+    <div class="note-cont">
+      <textarea></textarea>
+    </div>
+  `
+  createSticky(stickyTemplateHTML)
+})
+
+upload.addEventListener('click', () => {
+  // Open file explorer
+  let input = document.createElement('input')
+  input.setAttribute('type', "file")
+  input.click()
+  
+  //add image to sticky note
+  input.addEventListener('change', (e)=>{
+    let file = input.files[0]
+    let url = URL.createObjectURL(file)
+    
+    const stickyTemplateHTML = `
+      <div class="header-cont">
+        <div class="minimize"></div>
+        <div class="remove"></div>
+      </div>
+      <div class="note-cont">
+        <img src="${url}" alt="Uploaded Image from files"/>
+      </div>
+    `
+    createSticky(stickyTemplateHTML)
+  })
+})
+
+const createSticky = (stickyTemplateHTML) => {
   const stickyCont = document.createElement('div')
   stickyCont.setAttribute('class', 'sticky-cont')
-  stickyCont.innerHTML = `
-  <div class="header-cont">
-    <div class="minimize"></div>
-    <div class="remove"></div>
-  </div>
-  <div class="note-cont">
-    <textarea></textarea>
-  </div>
-  `
+  stickyCont.innerHTML = stickyTemplateHTML
   document.body.appendChild(stickyCont)
   let minimize = stickyCont.querySelector('.minimize')
   let remove = stickyCont.querySelector('.remove')
+  noteActions(minimize, remove, stickyCont)
   dragAndDrop(stickyCont)
-})
-
-function noteActions (element) {
-  
+}
+function noteActions (minimize, remove, stickyCont) {
+  remove.addEventListener('click', ()=>{
+    stickyCont.remove()
+  })
+  minimize.addEventListener('click', (e)=>{
+    const noteCont = stickyCont.querySelector('.note-cont')
+    let display = getComputedStyle(noteCont).getPropertyValue('display')
+    if(display === 'none') noteCont.style.display = 'block'
+    else noteCont.style.display = 'none'
+  })
 }
 
 const dragAndDrop = (element) => {
