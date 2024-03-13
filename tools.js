@@ -51,7 +51,7 @@ sticky.addEventListener('click',(e)=> {
       <div class="remove"></div>
     </div>
     <div class="note-cont">
-      <textarea></textarea>
+      <textarea spellcheck="false"></textarea>
     </div>
   `
   createSticky(stickyTemplateHTML)
