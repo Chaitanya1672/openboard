@@ -1,5 +1,14 @@
 # Realtime Openboard Project
 
+**Note : Due to vercel and netlify having problem with websocket connections, I have deployed project without socket.io code but still you can refer code in this repository, socket.io will work in localhost.
+
+##Steps to download and run repository
+1) Clone or download repository on local
+2) There are no local env variables so you can directly run the project.
+3) Do the npm install to download dependecies
+4) Then npm start to start the project
+5) Here we go you can now become artist :)
+
 ## Overview
 This project is realtime drawing board, user can draw anything on multiple screens with pencil which has different color and 
 sizes options same for eraser user can erase.
@@ -21,7 +30,7 @@ sizes options same for eraser user can erase.
 
 ## Demo
 **Live:- 
-https://github.com/Chaitanya1672/openboard/assets/100834122/6d13bc80-1342-432d-a6e6-2414de4a5c2f
+**Video:- https://github.com/Chaitanya1672/openboard/assets/100834122/6d13bc80-1342-432d-a6e6-2414de4a5c2f
 
 
 
