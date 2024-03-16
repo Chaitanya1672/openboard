@@ -2,7 +2,6 @@ const optionsCont = document.querySelector(".options-cont");
 const toolCont = document.querySelector('.tools-cont');
 const pencilToolCont = document.querySelector('.pencil-tool-cont')
 const eraserToolCont = document.querySelector('.eraser-tool-cont')
-// const stickyCont = document.querySelector('.sticky-cont')
 
 const pencil = document.querySelector('.pencil')
 const eraser = document.querySelector('.eraser')
@@ -12,7 +11,6 @@ const upload = document.querySelector('.upload')
 let pencilToolFlag = false
 let eraserToolFlag = false
 let optionsFlag = true
-// let stickyToolFlag = false
 
 optionsCont.addEventListener('click', ()=>{
   optionsFlag = !optionsFlag
@@ -136,7 +134,6 @@ const dragAndDrop = (element) => {
     };
   
   };
-  
   element.ondragstart = function() {
     return false;
   };

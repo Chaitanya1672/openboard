@@ -28,17 +28,23 @@ tool.lineWidth = pencilWidth
 
 canvas.addEventListener('mousedown', (e)=> {
   mouseDown = true
-  beginPath({x: e.clientX, y: e.clientY})
+  // beginPath({x: e.clientX, y: e.clientY})
+  const data = {
+    x: e.clientX, 
+    y: e.clientY
+  }
+  socket.emit('beginPath', data)
 })
 
 canvas.addEventListener('mousemove', (e)=>{
   if(mouseDown){
-    drawStroke({
+    let data = {
       x: e.clientX, 
       y: e.clientY,
       color: eraserToolFlag ? eraserColor : pencilColor,
       width: eraserToolFlag ? eraserWidth : pencilWidth
-    })
+    }
+    socket.emit('drawStroke', data)
   }
 })
 
@@ -64,11 +70,21 @@ pencilWidthEle.addEventListener('change', ()=>{
 
 eraser.addEventListener('click', ()=>{
   if(eraserToolFlag){ 
-    tool.strokeStyle = eraserColor
-    tool.lineWidth = eraserWidth
+    // tool.strokeStyle = eraserColor
+    // tool.lineWidth = eraserWidth
+    let data = {
+      strokeStyle: eraserColor,
+      lineWidth: eraserWidth
+    }
+    socket.emit('colorWidthChange', data)
   }else {
-    tool.strokeStyle = pencilColor
-    tool.lineWidth = pencilWidth
+    // tool.strokeStyle = pencilColor
+    // tool.lineWidth = pencilWidth
+    let data = {
+      strokeStyle: pencilColor,
+      lineWidth: pencilWidth
+    }
+    socket.emit('colorWidthChange', data)
   }
 })
 
@@ -90,12 +106,20 @@ download.addEventListener('click', ()=>{
 
 undo.addEventListener('click', () => {
   if(track > 0) track --
-  undoRedoCanvas({trackValue: track, actionTracker: undoRedoTracker})
+  let data = {
+    trackValue: track, 
+    actionTracker: undoRedoTracker
+  }
+  socket.emit('redoUndo', data)
 })
 
 redo.addEventListener('click', () => {
   if(track < undoRedoTracker.length - 1) track ++
-  undoRedoCanvas({trackValue: track, actionTracker: undoRedoTracker})
+  let data = {
+    trackValue: track, 
+    actionTracker: undoRedoTracker
+  }
+  socket.emit('redoUndo', data)
 })
 
 
@@ -125,3 +149,19 @@ function undoRedoCanvas (trackObj) {
     tool.drawImage(img, 0, 0, canvas.width, canvas.height)
   }
 }
+
+socket.on('beginPath', (data)=>{
+  beginPath(data)
+})
+
+socket.on('drawStroke', (data)=>{
+  drawStroke(data)
+})
+socket.on('redoUndo', (data)=>{
+  undoRedoCanvas(data)
+})
+socket.on('colorWidthChange', (data)=>{
+  const {strokeStyle, lineWidth} = data
+  tool.lineWidth = lineWidth
+  tool.strokeStyle = strokeStyle
+})
