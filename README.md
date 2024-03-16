@@ -29,7 +29,7 @@ sizes options same for eraser user can erase.
 5. Undo and redo the drawings at will.
 
 ## Demo
-**Live:- openboard-project.vercel.app/**
+**Live:- [openboard-project.vercel.app/](https://openboard-project.vercel.app/)**
 **Video:- https://github.com/Chaitanya1672/openboard/assets/100834122/6d13bc80-1342-432d-a6e6-2414de4a5c2f**
 
 
