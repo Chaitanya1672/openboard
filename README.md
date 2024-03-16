@@ -1,6 +1,6 @@
 # Realtime Openboard Project
 
-** Note : Due to vercel and netlify having problem with websocket connections, I have deployed project without socket.io code but still you can refer code in this repository, socket.io will work in localhost.**
+**Note : Due to vercel and netlify having problem with websocket connections, I have deployed project without socket.io code for now but still you can refer code in this repository, socket.io will work on localhost. I am looking for options for deployment, suggestions will be appreciated**
 
 ## Steps to download and run repository
 1) Clone or download repository on local
