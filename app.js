@@ -6,9 +6,9 @@ const app = express()
 // app.use()
 app.use(express.static("public"))
 
-app.get('/', function (req, res) {
-  res.send('Hello to Realtime Openboard Project')
-})
+// app.get('/', function (req, res) {
+//   res.send('Hello to Realtime Openboard Project')
+// })
 
 const server = app.listen(PORT,()=>{
   console.log(`Server started at port ${PORT}`)
