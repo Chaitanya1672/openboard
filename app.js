@@ -13,9 +13,7 @@ const server = app.listen(PORT,()=>{
   console.log(`Server started at port ${PORT}`)
 })
 
-const io = socket(server,{
-  transports: ['websocket']
-})
+const io = socket(server)
 io.on('connection', (socket)=>{
   console.log('Socket connected!')
   
