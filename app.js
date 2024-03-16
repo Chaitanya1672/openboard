@@ -9,16 +9,13 @@ const app = express();
 app.use(cors());
 app.use(express.static("public"))
 
-app.get('/', function (req, res) {
-  res.send('Hello to Realtime Openboard Project')
-})
-
 const server = app.listen(PORT,()=>{
   console.log(`Server started at port ${PORT}`)
 })
 
-const io = socket(server)
-
+const io = socket(server,{
+  transports: ['websocket']
+})
 io.on('connection', (socket)=>{
   console.log('Socket connected!')
   
